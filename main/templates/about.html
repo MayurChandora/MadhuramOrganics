@@ -1,0 +1,270 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About Us | AgroBusiness{% endblock %}
+
+{% block content %}
+
+<style>
+    
+    :root {
+        --agro-green: #2d6a4f;
+        --agro-light: #f8fbf9;
+        --agro-earth: #6c584c;
+    }
+
+    .about-hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x600/2d6a4f/ffffff?text=Our+Beautiful+Farm');
+        background-size: cover;
+        background-position: center;
+        padding: 100px 0;
+        color: white;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .section-title {
+        color: var(--agro-green);
+        font-weight: 700;
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .card-hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-radius: 15px;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .icon-box {
+        width: 60px;
+        height: 60px;
+        background-color: var(--agro-light);
+        color: var(--agro-green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .badge-agro {
+        background-color: #d8f3dc;
+        color: #2d6a4f;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 50px;
+    }
+</style>
+
+<section class="about-hero text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold">About Us</h1>
+        <p class="lead">Nurturing Nature, Delivering Purity Since 1998</p>
+       
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <img src="https://placehold.co/800x600/2d6a4f/ffffff?text=Our+Heritage" class="img-fluid rounded-4 shadow-lg" alt="Our Story">
+            </div>
+            <div class="col-lg-6">
+                <span class="badge badge-agro mb-3">Our Roots</span>
+                <h2 class="section-title">The Story of AgroBusiness</h2>
+                <p class="text-muted">Founded in the heart of the countryside, AgroBusiness started as a small family farm with just three cows and a commitment to chemical-free agriculture. We believed that the health of our community depended on the purity of what they consume.</p>
+                <p class="text-muted">Today, we have grown into a leading provider of organic cow products and sustainable farming solutions, yet our core values remain the same: Respect for nature, ethical treatment of cattle, and uncompromised quality for our customers.</p>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <h4 class="fw-bold text-success">25+</h4>
+                        <p class="small text-muted">Years of Experience</p>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="fw-bold text-success">5000+</h4>
+                        <p class="small text-muted">Happy Families Served</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 p-4 card-hover shadow-sm">
+                    <div class="icon-box mx-auto"><i class="bi bi-eye"></i></div>
+                    <h4 class="fw-bold">Our Vision</h4>
+                    <p class="text-muted">To be the global benchmark for organic agriculture, making chemical-free living accessible to every household.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 p-4 card-hover shadow-sm">
+                    <div class="icon-box mx-auto"><i class="bi bi-bullseye"></i></div>
+                    <h4 class="fw-bold">Our Mission</h4>
+                    <p class="text-muted">To produce and deliver the highest quality farm-fresh products while empowering local farmers and preserving the environment.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 p-4 card-hover shadow-sm">
+                    <div class="icon-box mx-auto"><i class="bi bi-heart"></i></div>
+                    <h4 class="fw-bold">Our Values</h4>
+                    <p class="text-muted">Purity, Ethical Farming, Transparency, and a deep-rooted love for our Mother Earth and her creatures.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Why Choose Our Farm?</h2>
+            <p class="text-muted">We maintain the highest standards in every step of our process.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 col-sm-6">
+                <div class="d-flex align-items-start">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h5 class="fw-bold">100% Organic</h5>
+                        <p class="small text-muted">Zero chemicals or synthetic fertilizers used in our processes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="d-flex align-items-start">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h5 class="fw-bold">Farm-to-Table</h5>
+                        <p class="small text-muted">Direct delivery within hours of harvest or processing.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="d-flex align-items-start">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h5 class="fw-bold">Ethical Treatment</h5>
+                        <p class="small text-muted">Cows are pasture-raised and treated with love and care.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="d-flex align-items-start">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h5 class="fw-bold">Pure & Untouched</h5>
+                        <p class="small text-muted">Hygienic processing without any human touch or additives.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="d-flex align-items-start">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h5 class="fw-bold">Trusted Source</h5>
+                        <p class="small text-muted">Full transparency with regular farm visits for our patrons.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="d-flex align-items-start">
+                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                    <div>
+                        <h5 class="fw-bold">Doorstep Delivery</h5>
+                        <p class="small text-muted">Reliable daily delivery network for fresh milk and ghee.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="section-title">What We Produce</h2>
+        <div class="row g-4 mt-2">
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-hover h-100 overflow-hidden">
+                    <img src="https://placehold.co/400x300/e9ecef/2d6a4f?text=Desi+Ghee" class="card-img-top" alt="Ghee">
+                    <div class="card-body">
+                        <h5 class="fw-bold">A2 Desi Ghee</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-hover h-100 overflow-hidden">
+                    <img src="https://placehold.co/400x300/e9ecef/2d6a4f?text=Fresh+Milk" class="card-img-top" alt="Milk">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Fresh Raw Milk</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-hover h-100 overflow-hidden">
+                    <img src="https://placehold.co/400x300/e9ecef/2d6a4f?text=Dung+Cake" class="card-img-top" alt="Dung Cake">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Cow Dung Cakes</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card card-hover h-100 overflow-hidden">
+                    <img src="https://placehold.co/400x300/e9ecef/2d6a4f?text=Manure" class="card-img-top" alt="Manure">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Organic Manure</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="{%url 'products'%}" class="btn btn-success rounded-pill px-5 mt-5 fw-bold py-2">View All Products</a>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 order-lg-2">
+                <img src="https://placehold.co/800x600/2d6a4f/ffffff?text=Quality+Testing" class="img-fluid rounded-4" alt="Quality Promise">
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <h2 class="section-title">The Quality Promise</h2>
+                <p class="text-muted">We understand that when it comes to food, there is no compromise. That is why our farm follows a rigorous quality protocol.</p>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><i class="bi bi-shield-fill-check text-success me-2"></i> <strong>Lab Tested:</strong> Every batch is checked for purity.</li>
+                    <li class="mb-3"><i class="bi bi-shield-fill-check text-success me-2"></i> <strong>Cold Chain:</strong> Temperature-controlled storage for freshness.</li>
+                    <li class="mb-3"><i class="bi bi-shield-fill-check text-success me-2"></i> <strong>Natural Fodder:</strong> Our cows eat only natural grass and oil-cakes.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-agro text-white text-center" style="background-color: var(--agro-green);">
+    <div class="container py-4">
+        <h2 class="fw-bold mb-3">Experience the Purity Today</h2>
+        <p class="lead mb-4">Have questions about our farming methods or want to schedule a visit?</p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a onclick="homeWhatsApp()" class="btn btn-light btn-lg px-4 rounded-pill fw-bold text-success">
+                <i class="bi bi-whatsapp me-2"></i>Chat on WhatsApp
+            </a>
+            <a href="{%url 'contact'%}" class="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold">
+                Contact Us
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

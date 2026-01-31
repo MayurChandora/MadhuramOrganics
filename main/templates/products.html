@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Products | AgroBusiness{% endblock %}
+
+{% block content %}
+<style>
+    :root {
+        --agro-green: #2d6a4f;
+        --agro-light: #f8fbf9;
+        --agro-earth: #6c584c;
+    }
+
+    .products-header {
+        background: linear-gradient(rgba(45, 106, 79, 0.9), rgba(45, 106, 79, 0.9)), url('https://placehold.co/1920x400/2d6a4f/ffffff?text=Our+Organic+Farm');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 60px 0;
+    }
+
+    .product-card {
+        border: none;
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        background: white;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    .img-container {
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .product-img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: filter 0.3s ease;
+    }
+
+    .img-container:hover .product-img {
+        filter: brightness(70%);
+    }
+
+    .view-hint {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        white-space: nowrap;
+    }
+
+    .img-container:hover .view-hint {
+        opacity: 1;
+    }
+
+    .badge-stock {
+        background-color: #d8f3dc;
+        color: #2d6a4f;
+        font-size: 0.8rem;
+    }
+
+    .badge-out {
+        background-color: #f8d7da;
+        color: #842029;
+        font-size: 0.8rem;
+    }
+
+    .btn-whatsapp {
+        background-color: #25d366;
+        color: white;
+        border: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-whatsapp:hover {
+        background-color: #128c7e;
+        color: white;
+    }
+
+    .filter-section {
+        background: white;
+        border-radius: 50px;
+        padding: 10px 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        margin-top: -35px;
+        z-index: 10;
+        position: relative;
+    }
+
+    .modal-content {
+        border-radius: 20px;
+        border: none;
+    }
+    
+    .modal-product-img {
+        width: 100%;
+        border-radius: 15px;
+        object-fit: cover;
+        max-height: 450px;
+    }
+</style>
+
+<header class="products-header text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Our Products</h1>
+        <p class="lead">Pure cow products & organic agriculture essentials</p>
+    </div>
+</header>
+
+<div class="container mb-5">
+    <div class="filter-section">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text bg-transparent border-0"><i class="bi bi-search text-success"></i></span>
+                    <input type="text" id="searchInput" class="form-control border-0" placeholder="Search products..." onkeyup="filterProducts()">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <select id="categoryFilter" class="form-select border-0 text-success fw-bold" onchange="filterProducts()">
+                    <option value="all">All Categories</option>
+                    <option value="cow">Cow Products</option>
+                    <option value="agri">Agriculture Products</option>
+                </select>
+            </div>
+            <div class="col-md-4 text-md-end text-muted small">
+                Click image to view details
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container pb-5">
+    <div class="row g-4" id="productList">
+        
+        {% for p in products %}
+        <div class="col-md-6 col-lg-4 product-item" data-category="{{ p.category }}" data-name="{{ p.name }}">
+            <div class="card product-card shadow-sm h-100">
+                <div class="img-container"
+                    onclick="openProductModal(this)"
+                    data-name="{{ p.name }}"
+                    data-price="₹{{ p.price }}"
+                    data-category="{% if p.category == 'cow' %}Cow Products{% else %}Agriculture Products{% endif %}"
+                    data-img="{{ p.image.url }}"
+                    data-desc="{{ p.description }}"
+                    data-images="{% for img in p.images.all %}{{ img.image.url }}{% if not forloop.last %},{% endif %}{% endfor %}">
+                    
+                    <img src="{{ p.image.url }}" class="product-img" alt="{{ p.name }}">
+                    <div class="view-hint"><i class="bi bi-eye"></i> View Details</div>
+                </div>
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between mb-2">
+                        {% if p.in_stock %}
+                            <span class="badge badge-stock rounded-pill px-2 py-1">In Stock</span>
+                        {% else %}
+                            <span class="badge badge-out rounded-pill px-2 py-1">Out of Stock</span>
+                        {% endif %}
+                        <span class="text-muted small">
+                            {% if p.category == 'cow' %}Cow Products{% else %}Agriculture Products{% endif %}
+                        </span>
+                    </div>
+                    <h5 class="fw-bold">{{ p.name }}</h5>
+                    <p class="text-success fw-bold mb-3">₹{{ p.price }}</p>
+                    <button onclick="orderWhatsApp('{{ p.name }}')" class="btn btn-whatsapp rounded-pill px-4 py-2 w-100">
+                        <i class="bi bi-whatsapp me-2"></i> Buy now
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <div class="alert alert-info rounded-4 border-0 shadow-sm">
+                <i class="bi bi-info-circle me-2"></i> No products available right now.
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="productDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 pt-0">
+                <div class="row g-4">
+                    {% comment %} <div class="col-md-6 text-center">
+                        <img id="modalImg" src="" class="modal-product-img shadow-sm" alt="Product Image">
+                    </div> {% endcomment %}
+                    <div class="col-md-6">
+
+                        <!--  Carousel Start -->
+                        <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                            
+                            <div class="carousel-inner" id="carouselInner">
+                                <!-- Images will come here dynamically -->
+                                
+                                <!-- Default first slide (fallback) -->
+                                <div class="carousel-item active">
+                                    <img id="modalImg" src="" class="modal-product-img shadow-sm" alt="Product Image">
+                                </div>
+                            </div>
+
+                            <!--  Controls -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+
+                            <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+                        </div>
+                        <!--  Carousel End -->
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span id="modalCategory" class="badge bg-success">Category</span>
+                        </div>
+                        <h2 id="modalTitle" class="fw-bold text-dark">Product Name</h2>
+                        <h3 id="modalPrice" class="text-success fw-bold mb-4">Price</h3>
+                        <hr>
+                        <h6 class="fw-bold">Description</h6>
+                        <p id="modalDesc" class="text-muted lh-lg">Description goes here...</p>
+                        <div class="mt-4">
+                            <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Search and Filter Functionality
+    function filterProducts() {
+        const searchText = document.getElementById('searchInput').value.toLowerCase();
+        const categoryFilter = document.getElementById('categoryFilter').value;
+        const products = document.getElementsByClassName('product-item');
+
+        for (let product of products) {
+            const name = product.getAttribute('data-name').toLowerCase();
+            const category = product.getAttribute('data-category');
+            
+            const matchesSearch = name.includes(searchText);
+            const matchesCategory = (categoryFilter === 'all' || category === categoryFilter);
+
+            if (matchesSearch && matchesCategory) {
+                product.style.display = "block";
+            } else {
+                product.style.display = "none";
+            }
+        }
+    }
+    
+    function openProductModal(element) {
+        const name = element.getAttribute('data-name');
+        const price = element.getAttribute('data-price');
+        const desc = element.getAttribute('data-desc');
+        const category = element.getAttribute('data-category');
+        const imgSrc = element.getAttribute('data-img');
+        const imagesData = element.getAttribute('data-images'); //  multiple images
+
+        //  Fill modal text
+        document.getElementById('modalTitle').innerText = name;
+        document.getElementById('modalPrice').innerText = price;
+        document.getElementById('modalDesc').innerText = desc;
+        document.getElementById('modalCategory').innerText = category;
+
+        //  Prepare images list
+        let images = [];
+
+        // Add main image first always
+        images.push(imgSrc);
+
+        // Add extra images (if any)
+        if (imagesData && imagesData.trim() !== "") {
+            const extraImages = imagesData.split(",");
+            extraImages.forEach((url) => {
+                if (url.trim() !== "") {
+                    images.push(url.trim());
+                }
+            });
+        }
+
+        //  Fill carousel
+        const carouselInner = document.getElementById("carouselInner");
+        carouselInner.innerHTML = "";
+
+        images.forEach((url, index) => {
+            const activeClass = index === 0 ? "active" : "";
+            carouselInner.innerHTML += `
+                <div class="carousel-item ${activeClass}">
+                    <img src="${url}" class="modal-product-img shadow-sm" alt="${name}">
+                </div>
+            `;
+        });
+
+        //  Show Modal
+        const myModal = new bootstrap.Modal(document.getElementById('productDetailModal'));
+        myModal.show();
+    }
+
+
+    // WhatsApp Ordering Logic
+    function orderWhatsApp(productName) {
+        const phoneNumber = "919024008767"; // Replace with actual number
+        const message = `Hello AgroBusiness, I'm interested in buying "${productName}". Could you please provide more details?`;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        window.open(whatsappURL, '_blank'); 
+    }
+</script>
+{% endblock %}

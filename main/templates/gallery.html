@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Gallery | AgroBusiness{% endblock %}
+
+{% block content %}
+<style>
+    :root {
+        --agro-green: #2d6a4f;
+        --agro-light: #f8fbf9;
+    }
+
+    .gallery-hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x600/2d6a4f/ffffff?text=Our+Farm+Life');
+        background-size: cover;
+        background-position: center;
+        padding: 80px 0;
+        color: white;
+    }
+
+    .filter-btn {
+        border-radius: 50px;
+        padding: 8px 25px;
+        font-weight: 600;
+        border: 2px solid var(--agro-green);
+        color: var(--agro-green);
+        background: transparent;
+        transition: all 0.3s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+        background-color: var(--agro-green);
+        color: white;
+    }
+
+    .gallery-item {
+        transition: all 0.4s ease;
+    }
+
+    .gallery-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .gallery-card img {
+        transition: transform 0.5s ease;
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(45, 106, 79, 0.7);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .gallery-card:hover img {
+        transform: scale(1.1);
+    }
+
+    .gallery-card:hover .gallery-overlay {
+        opacity: 1;
+    }
+
+    .overlay-icon {
+        color: white;
+        font-size: 2.5rem;
+    }
+
+    .gallery-title {
+        color: white;
+        font-weight: 600;
+        margin-top: 10px;
+        font-size: 1rem;
+    }
+
+    .modal-content {
+        background-color: transparent;
+        border: none;
+    }
+
+    .modal-body img {
+        border-radius: 15px;
+        border: 5px solid white;
+    }
+</style>
+
+<section class="gallery-hero text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Our Gallery</h1>
+        <p class="lead">Farm, cows, products and agriculture work snapshots</p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="/" class="text-white text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item active text-white-50" aria-current="page">Gallery</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
+            <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+            <button class="filter-btn" onclick="filterGallery('farm', this)">Farm</button>
+            <button class="filter-btn" onclick="filterGallery('cow-products', this)">Cow Products</button>
+            <button class="filter-btn" onclick="filterGallery('agriculture', this)">Agriculture</button>
+        </div>
+
+        <div class="row g-4" id="galleryGrid">
+            {% for g in gallery_images %}
+            <div class="col-lg-3 col-md-4 col-sm-6 gallery-item" data-category="{{ g.category }}">
+                <div class="gallery-card" onclick="openLightbox('{{ g.image.url }}')">
+                    <img src="{{ g.image.url }}" alt="{{ g.title|default:'Gallery Image' }}">
+                    <div class="gallery-overlay">
+                        <i class="bi bi-plus-lg overlay-icon"></i>
+                        {% if g.title %}
+                        <div class="gallery-title">{{ g.title }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center rounded-pill border-0 shadow-sm">
+                    No gallery images available right now.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-agro text-white text-center" style="background-color: var(--agro-green);">
+    <div class="container py-4">
+        <h2 class="fw-bold mb-3">Want to know more?</h2>
+        <p class="lead mb-4">Chat with us directly for farm visits or bulk orders.</p>
+        
+        <button class="btn btn-light btn-lg px-5 rounded-pill fw-bold text-success shadow" onclick="homeWhatsApp()">
+            <i class="bi bi-whatsapp me-2"></i> Chat on WhatsApp
+        </button>
+    </div>
+</section>
+
+<div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0 text-center">
+                <img src="" id="lightboxImg" class="img-fluid" alt="Enlarged Image">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function filterGallery(category, btn) {
+        // Handle Button Active Class
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter Items
+        const items = document.querySelectorAll('.gallery-item');
+        items.forEach(item => {
+            // Note: matching 'cow-products' button to 'cow' category from database if needed, 
+            // but standardizing to your model choices: farm / cow / agri
+            let itemCategory = item.getAttribute('data-category');
+            
+            // Mapping UI buttons to model category strings
+            let targetCategory = category;
+            if (category === 'cow-products') targetCategory = 'cow';
+            if (category === 'agriculture') targetCategory = 'agri';
+
+            if (category === 'all' || itemCategory === targetCategory) {
+                item.style.display = 'block';
+                setTimeout(() => item.style.opacity = '1', 10);
+            } else {
+                item.style.opacity = '0';
+                setTimeout(() => item.style.display = 'none', 300);
+            }
+        });
+    }
+
+    function openLightbox(imgSrc) {
+        document.getElementById('lightboxImg').src = imgSrc;
+        const myModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+        myModal.show();
+    }
+
+    
+</script>
+{% endblock%}
+

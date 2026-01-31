@@ -1,0 +1,431 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home | Pure Cow & Agriculture Products{% endblock %}
+
+{% block content %}
+
+<style>
+body{
+  cursor: default !important;
+}
+
+a, button{
+  cursor: pointer !important;
+}
+
+*{
+  pointer-events: auto !important;
+}
+
+
+
+    :root {
+        --agro-primary: #2d6a4f; /* Deep Earthy Green */
+        --agro-secondary: #d8f3dc; /* Light Pale Green */
+        --agro-accent: #d97706; /* Earthy Orange/Brown for CTAs */
+    }
+
+    /* Hero Section Styling */
+    .hero-section {
+        
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),  url("{% static 'images/full-shot-woman-outdoors.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        height: 85vh;
+        display: flex;
+        align-items: center;
+        color: white;
+    }
+
+    /* Card Hover Effects */
+    .product-card, .feature-card, .gallery-img-container {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover, .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Gallery Zoom */
+    .gallery-img-container {
+        overflow: hidden;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .gallery-img-container img {
+        transition: transform 0.5s ease;
+    }
+    .gallery-img-container:hover img {
+        transform: scale(1.1);
+    }
+
+    /* Floating WhatsApp Button */
+    .floating-whatsapp {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background-color: #25D366;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+    .floating-whatsapp:hover {
+        background-color: #128C7E;
+        color: white;
+        transform: scale(1.1);
+    }
+    
+    /* FAQ Accordion Active State */
+    .accordion-button:not(.collapsed) {
+        background-color: var(--agro-secondary);
+        color: var(--agro-primary);
+        box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+    }
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: rgba(0,0,0,.125);
+    }
+</style>
+
+<section class="hero-section text-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-3 fw-bold mb-3">Pure Goodness from Our Farm to Your Home</h1>
+                <p class="lead mb-5 fs-4">Organic Ghee, Fresh Milk, and Natural Agriculture Essentials delivered with love and purity.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{% url 'products' %}" class="btn btn-light btn-lg px-4 py-2 rounded-pill shadow-sm text-success fw-bold">
+                        <i class="bi bi-shop me-2"></i>View Products
+                    </a>
+                    <button class="btn btn-light btn-lg px-4 py-2 rounded-pill shadow-sm text-success fw-bold" onclick="homeWhatsApp()">
+                        <i class="bi bi-whatsapp me-2"></i> Order on WhatsApp
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5" style="background-color: #f9fdfa;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h5 class="text-success text-uppercase fw-bold ls-2">Our Promise</h5>
+            <h2 class="fw-bold text-dark">Why Choose Us?</h2>
+        </div>
+        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-4">
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm feature-card text-center p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-patch-check-fill fs-1 text-success"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">100% Organic</h5>
+                    <p class="card-text text-muted">Certified organic products free from harmful chemicals and pesticides.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm feature-card text-center p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-heart-pulse-fill fs-1 text-success"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Hygienically Packed</h5>
+                    <p class="card-text text-muted">Processed and packed in sterile environments to ensure maximum safety.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm feature-card text-center p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-flower1 fs-1 text-success"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Farm Fresh</h5>
+                    <p class="card-text text-muted">Directly sourced from our local farms to your doorstep within hours.</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm feature-card text-center p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-truck fs-1 text-success"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Fast Delivery</h5>
+                    <p class="card-text text-muted">Reliable and quick delivery network covering the entire region.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h5 class="text-success text-uppercase fw-bold">Shop Now</h5>
+            <h2 class="fw-bold text-dark">Featured Products</h2>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <img src="https://placehold.co/600x400/e9ecef/2d6a4f?text=A2+Desi+Ghee" class="card-img-top" alt="Product 1">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Pure A2 Desi Ghee</h5>
+                        <p class="card-text text-muted small">Traditional Bilona method, golden purity.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-5 fw-bold text-dark">$25.00</span>
+                            {% comment %} <button class="btn btn-outline-success btn-sm rounded-pill"><i class="bi bi-whatsapp me-1"></i> Order</button> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <img src="https://placehold.co/600x400/e9ecef/2d6a4f?text=Organic+Fertilizer" class="card-img-top" alt="Product 2">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Vermicompost Gold</h5>
+                        <p class="card-text text-muted small">Nutrient-rich organic fertilizer for crops.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-5 fw-bold text-dark">$10.00</span>
+                            {% comment %} <button class="btn btn-outline-success btn-sm rounded-pill"><i class="bi bi-whatsapp me-1"></i> Order</button> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <img src="https://placehold.co/600x400/e9ecef/2d6a4f?text=Fresh+Cow+Milk" class="card-img-top" alt="Product 3">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Raw Cow Milk</h5>
+                        <p class="card-text text-muted small">Unprocessed, full cream fresh morning milk.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-5 fw-bold text-dark">$4.00/L</span>
+                            {% comment %} <button class="btn btn-outline-success btn-sm rounded-pill"><i class="bi bi-whatsapp me-1"></i> Order</button> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <img src="https://placehold.co/600x400/e9ecef/2d6a4f?text=Cow+Dung+Cakes" class="card-img-top" alt="Product 4">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Dried Cow Dung Cakes</h5>
+                        <p class="card-text text-muted small">Perfect for Hawan and organic fuel.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-5 fw-bold text-dark">$8.00/pack</span>
+                            {% comment %} <button class="btn btn-outline-success btn-sm rounded-pill"><i class="bi bi-whatsapp me-1"></i> Order</button> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <img src="https://placehold.co/600x400/e9ecef/2d6a4f?text=Organic+Honey" class="card-img-top" alt="Product 5">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Wild Forest Honey</h5>
+                        <p class="card-text text-muted small">Collected from deep forests, raw and unfiltered.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-5 fw-bold text-dark">$15.00</span>
+                            {% comment %} <button class="btn btn-outline-success btn-sm rounded-pill"><i class="bi bi-whatsapp me-1"></i> Order</button> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <img src="https://placehold.co/600x400/e9ecef/2d6a4f?text=Panchagavya" class="card-img-top" alt="Product 6">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Organic Panchagavya</h5>
+                        <p class="card-text text-muted small">Traditional plant growth promoter and immunity booster.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-5 fw-bold text-dark">$12.00</span>
+                            {% comment %} <button class="btn btn-outline-success btn-sm rounded-pill"><i class="bi bi-whatsapp me-1"></i> Order</button> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <img src="https://placehold.co/800x600/2d6a4f/ffffff?text=Our+Farm+Story" class="img-fluid rounded-4 shadow" alt="About Us">
+            </div>
+            <div class="col-lg-6">
+                <h5 class="text-success fw-bold text-uppercase">Our Story</h5>
+                <h2 class="display-6 fw-bold mb-4">Dedicated to Sustainable & Ethical Farming</h2>
+                <p class="lead text-muted">We started with a single cow and a dream to provide chemical-free nourishment to our community. Today, we manage over 50 acres of organic land.</p>
+                <p class="text-muted mb-4">Our cattle are treated with respect, free-grazed, and never subjected to hormonal injections. We believe that happy cows produce the healthiest milk.</p>
+                <a href="{% url 'about' %}" class="btn btn-success rounded-pill px-4">Read More About Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h5 class="text-success text-uppercase fw-bold">Life at the Farm</h5>
+            <h2 class="fw-bold text-dark">Our Gallery</h2>
+        </div>
+        <div class="row row-cols-2 row-cols-md-4 g-3">
+            <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Cows" class="img-fluid w-100" alt="Gallery 1"></div></div>
+            <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Fields" class="img-fluid w-100" alt="Gallery 2"></div></div>
+            <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Milking" class="img-fluid w-100" alt="Gallery 3"></div></div>
+            <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Harvest" class="img-fluid w-100" alt="Gallery 4"></div></div>
+            <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Processing" class="img-fluid w-100" alt="Gallery 5"></div></div>
+            <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Team" class="img-fluid w-100" alt="Gallery 6"></div></div>
+            <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Calves" class="img-fluid w-100" alt="Gallery 7"></div></div>
+            <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Storage" class="img-fluid w-100" alt="Gallery 8"></div></div>
+        </div>
+        <div class="text-center mt-4">
+           <a href="{% url 'gallery' %}" class="btn btn-light btn-lg px-4 py-2 rounded-pill shadow-sm text-success fw-bold">
+                <i class="bi bi-shop me-2"></i>View Our Gallery
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="py-5" style="background-color: #f9fdfa;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark">What Our Customers Say</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="card-text fst-italic text-muted">"The Ghee quality is unmatched. The aroma takes me back to my grandmother's village home. Highly recommended!"</p>
+                        <h6 class="fw-bold mt-3">- Priya Sharma</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                        </div>
+                        <p class="card-text fst-italic text-muted">"I use their vermicompost for my home garden, and the results are fantastic. My plants are greener than ever."</p>
+                        <h6 class="fw-bold mt-3">- Rahul Verma</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4">
+                    <div class="card-body">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="card-text fst-italic text-muted">"Fresh milk delivery is punctual, and the packaging is very hygienic. Great service team!"</p>
+                        <h6 class="fw-bold mt-3">- Anita Desai</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold text-dark">Frequently Asked Questions</h2>
+                </div>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item border-0 shadow-sm mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                Do you deliver daily?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Yes, for milk and fresh produce subscribers, we offer daily morning delivery between 6 AM and 8 AM.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 shadow-sm mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                Is your Ghee made from A2 Milk?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Absolutely. We use pure A2 milk from our indigenous Gir cows and use the traditional Bilona method to make Ghee.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 shadow-sm mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                What is your return policy?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                If you receive a damaged product or are unsatisfied with the quality, please contact us within 24 hours for a replacement or refund.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 shadow-sm mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                Do you take bulk orders for events?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Yes, we accept bulk orders for Ghee, Honey, and Gift Hampers. Please contact us 1 week in advance.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 shadow-sm mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                                What payment methods do you accept?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                We accept UPI, Credit/Debit Cards, Net Banking, and Cash on Delivery (COD) for local orders.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 text-white text-center" style="background-color: var(--agro-primary);">
+    <div class="container">
+        <h2 class="fw-bold mb-4">Have Questions? We are here to help!</h2>
+        <p class="lead mb-4">Get in touch with us for orders, farm visits, or general inquiries.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <button class="btn btn-light text-success fw-bold px-4 rounded-pill" onclick="homeWhatsApp()"><i class="bi bi-whatsapp me-2"></i> Chat on WhatsApp</button>
+            <button class="btn btn-outline-light fw-bold px-4 rounded-pill"><i class="bi bi-telephone-fill me-2"></i> Call Us</button>
+            <a href="{% url 'contact' %}" class="btn btn-outline-light fw-bold px-4 rounded-pill">
+                <i class="bi bi-shop me-2"></i>Contact Page
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

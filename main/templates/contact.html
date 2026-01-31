@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact Us | AgroBusiness{% endblock %}
+
+{% block content %}
+
+<style>
+    :root {
+        --agro-green: #2d6a4f;
+        --agro-light: #f8fbf9;
+        --agro-earth: #6c584c;
+    }
+
+    .contact-hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x400/2d6a4f/ffffff?text=Get+In+Touch');
+        background-size: cover;
+        background-position: center;
+        padding: 80px 0;
+        color: white;
+    }
+
+    .contact-card {
+        border: none;
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+        background-color: var(--agro-light);
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        background-color: #ffffff;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .icon-circle {
+        width: 50px;
+        height: 50px;
+        background-color: var(--agro-green);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        font-size: 20px;
+    }
+
+    .form-control {
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #dee2e6;
+    }
+
+    .form-control:focus {
+        border-color: var(--agro-green);
+        box-shadow: 0 0 0 0.25rem rgba(45, 106, 79, 0.15);
+    }
+
+    .map-container {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        height: 100%;
+        min-height: 400px;
+    }
+</style>
+
+
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5 align-items-stretch">
+            
+            <div class="col-lg-5">
+                <div class="h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <h3 class="fw-bold mb-4 text-success">Contact Information</h3>
+                        <p class="text-muted mb-5">Have a specific inquiry or want to visit our farm? Reach out through any of these channels or fill out the form.</p>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-sm-6 col-lg-12">
+                            <div class="card p-3 contact-card border-0 shadow-sm">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-circle mb-0 me-3"><i class="bi bi-telephone"></i></div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0">Call Us</h6>
+                                        <p class="small text-muted mb-0">+91 98765 43210</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-12">
+                            <div class="card p-3 contact-card border-0 shadow-sm">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-circle mb-0 me-3"><i class="bi bi-whatsapp"></i></div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0">WhatsApp</h6>
+                                        <p class="small text-muted mb-0">+91 98765 43210</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-12">
+                            <div class="card p-3 contact-card border-0 shadow-sm">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-circle mb-0 me-3"><i class="bi bi-envelope"></i></div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0">Email</h6>
+                                        <p class="small text-muted mb-0">info@agrobusiness.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-12">
+                            <div class="card p-3 contact-card border-0 shadow-sm">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-circle mb-0 me-3"><i class="bi bi-geo-alt"></i></div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0">Location</h6>
+                                        <p class="small text-muted mb-0">Agro Farm, Green Valley</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="card shadow border-0 p-4 p-md-5 rounded-4 h-100">
+                    <h3 class="fw-bold mb-4 text-success">Send a Message</h3>
+                    <form method="POST"  onsubmit="sendToWhatsApp(event)">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Full Name</label>
+                                <input type="text"  id="name" class="form-control" name="name" placeholder="Enter your name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold">Contact Number</label>
+                                <!--<input type="tel" id="phone" class="form-control" name="phone" placeholder="Enter phone number" required>-->
+                                <input type="tel"id="phone"name="phone"class="form-control"placeholder="Enter 10-digit mobile number"requiredpattern="[0-9]{10}"maxlength="10">
+                                
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg w-100 rounded-pill py-3 fw-bold shadow-sm">
+                            <i class="bi bi-send me-2"></i>Send Message
+                        </button>
+                        <p class="text-center text-muted mt-3 small">
+                            <i class="bi bi-clock me-1"></i> We usually respond within 24 hours.
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
