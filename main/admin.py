@@ -3,10 +3,6 @@
 # from django.contrib.auth.models import Group
 # admin.site.unregister(Group)
 
-# admin.site.site_header = "AgroBusiness Dashboard"
-# admin.site.site_title = "AgroBusiness Admin"
-# admin.site.index_title = "Manage Products & Gallery"
-
 
 # class ProductImageInline(admin.TabularInline):
 #     model = ProductImage

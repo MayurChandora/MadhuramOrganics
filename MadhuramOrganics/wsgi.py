@@ -1,5 +1,5 @@
 """
-WSGI config for madhuramagro_site project.
+WSGI config for MadhuramOrganics project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

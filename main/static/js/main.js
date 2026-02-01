@@ -36,13 +36,13 @@ function openWhatsAppWithMessage(message) {
 
 //  3) Home Page Button: Direct WhatsApp Chat
 function homeWhatsApp() {
-  const message = "Hello AgroBusiness! I want to place an order. Please share details.";
+  const message = "Hello MadhuramOrganics! I want to place an order. Please share details.";
   openWhatsAppWithMessage(message);
 }
 
 //  4) Product Page Button: Product-specific WhatsApp Message
 function orderWhatsApp(productName) {
-  const message = `Hello AgroBusiness! I'm interested in buying "${productName}". Please share more details.`;
+  const message = `Hello MadhuramOrganics! I'm interested in buying "${productName}". Please share more details.`;
   openWhatsAppWithMessage(message);
 }
 
@@ -68,7 +68,7 @@ function sendToWhatsApp(event) {
   }
 
   let finalMessage =
-    `Hello AgroBusiness!%0A` +
+    `Hello MadhuramOrganics!%0A` +
     `Name: ${name}%0A` +
     `Contact: ${phone}%0A` +
     `Message: ${message}`;

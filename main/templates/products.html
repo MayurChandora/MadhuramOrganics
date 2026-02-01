@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Products | AgroBusiness{% endblock %}
+{% block title %}Products | MadhuramOrganics{% endblock %}
 
 {% block content %}
 <style>
@@ -327,7 +327,7 @@
     // WhatsApp Ordering Logic
     function orderWhatsApp(productName) {
         const phoneNumber = "919024008767"; // Replace with actual number
-        const message = `Hello AgroBusiness, I'm interested in buying "${productName}". Could you please provide more details?`;
+        const message = `Hello MadhuramOrganics, I'm interested in buying "${productName}". Could you please provide more details?`;
         const encodedMessage = encodeURIComponent(message);
         const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
         window.open(whatsappURL, '_blank'); 

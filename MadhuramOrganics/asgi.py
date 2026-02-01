@@ -1,5 +1,5 @@
 """
-ASGI config for madhuramagro_site project.
+ASGI config for MadhuramOrganics project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
