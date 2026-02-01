@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from dotenv import load_dotenv
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'main',
+   
 ]
 
 # MIDDLEWARE = [
@@ -92,6 +100,26 @@ DATABASES = {
     }
 }
 
+#cloud data storage
+CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'drm6cfd9h',
+    'API_KEY': '463278749742143',
+    'API_SECRET': 'WEFx412qgHIy91mrCP8o94ho7VY',
+}
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
+
+# Media 
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = BASE_DIR / "media"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -147,6 +175,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'templates')]
 
-# Media 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
