@@ -9,14 +9,15 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+from dotenv import load_dotenv
+load_dotenv()
 
 from pathlib import Path
 import os
+import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-from dotenv import load_dotenv
-load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -93,12 +94,19 @@ WSGI_APPLICATION = 'MadhuramOrganics.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+#postresql data base connection
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    )
 }
+
 
 #cloud data storage
 CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
