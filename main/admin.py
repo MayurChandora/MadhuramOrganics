@@ -38,8 +38,8 @@ from .models import Product, GalleryImage, ProductImage
 # admin.site.unregister(Group)
 
 
-admin.site.site_header = "AgroBusiness Dashboard"
-admin.site.site_title = "AgroBusiness Admin"
+admin.site.site_header = "MadhuramOrganics Dashboard"
+admin.site.site_title = "MadhuramOrganics Admin"
 admin.site.index_title = "Manage Products & Gallery"
 
 
@@ -54,6 +54,17 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ("category", "in_stock")
     search_fields = ("name",)
     ordering = ("-created_at",)
+    fieldsets = (
+        ("Basic Information", {
+            "fields": ("name", "category", "price", "in_stock")
+        }),
+        ("Product Details", {
+            "fields": ("description",)
+        }),
+        ("Main Image", {
+            "fields": ("image",)
+        }),
+    )
     inlines = [ProductImageInline]  #THIS ENABLES EXTRA IMAGES
 
 @admin.register(ProductImage)
