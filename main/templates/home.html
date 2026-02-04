@@ -149,7 +149,7 @@ a, button{
                         <i class="bi bi-flower1 fs-1 text-success"></i>
                     </div>
                     <h5 class="card-title fw-bold">Farm Fresh</h5>
-                    <p class="card-text text-muted">Directly sourced from our local farms to your doorstep within hours.</p>
+                    <p class="card-text text-muted">Directly sourced from our local farms to your doorstep.</p>
                 </div>
             </div>
             <div class="col">
@@ -171,7 +171,8 @@ a, button{
             <h5 class="text-success text-uppercase fw-bold">Shop Now</h5>
             <h2 class="fw-bold text-dark">Featured Products</h2>
         </div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-2 row-cols-md-3 g-3">
+
             <div class="col">
                 <div class="card h-100 border-0 shadow-sm product-card">
                     <img src="https://placehold.co/600x400/e9ecef/2d6a4f?text=A2+Desi+Ghee" class="card-img-top" alt="Product 1">
@@ -263,9 +264,9 @@ a, button{
             <div class="col-lg-6">
                 <h5 class="text-success fw-bold text-uppercase">Our Story</h5>
                 <h2 class="display-6 fw-bold mb-4">Dedicated to Sustainable & Ethical Farming</h2>
-                <p class="lead text-muted">We started with a single cow and a dream to provide chemical-free nourishment to our community. Today, we manage over 50 acres of organic land.</p>
+                <p class="lead text-muted">We are a small business dedicated to offering natural and organic cow-based and agricultural products. Our focus is on purity, sustainability, and traditional farming practices that support healthy living and environmental care.</p>
                 <p class="text-muted mb-4">Our cattle are treated with respect, free-grazed, and never subjected to hormonal injections. We believe that happy cows produce the healthiest milk.</p>
-                <a href="{% url 'about' %}" class="btn btn-success rounded-pill px-4">Read More About Us</a>
+                <a href="{% url 'about' %}" class="btn btn-success rounded-pill px-4 ">Read More About Us</a>
             </div>
         </div>
     </div>
@@ -278,7 +279,7 @@ a, button{
             <h2 class="fw-bold text-dark">Our Gallery</h2>
         </div>
         <div class="row row-cols-2 row-cols-md-4 g-3">
-            <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Cows" class="img-fluid w-100" alt="Gallery 1"></div></div>
+            <div class="col"><div class="gallery-img-container"><img src="{% static 'images/brown-cow-eatting-grass_.jpg' %}" class="img-fluid w-100" alt="Gallery 1"></div></div>
             <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Fields" class="img-fluid w-100" alt="Gallery 2"></div></div>
             <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Milking" class="img-fluid w-100" alt="Gallery 3"></div></div>
             <div class="col"><div class="gallery-img-container"><img src="https://placehold.co/400x400/2d6a4f/ffffff?text=Harvest" class="img-fluid w-100" alt="Gallery 4"></div></div>
@@ -307,7 +308,7 @@ a, button{
                         <div class="text-warning mb-3">
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                         </div>
-                        <p class="card-text fst-italic text-muted">"The Ghee quality is unmatched. The aroma takes me back to my grandmother's village home. Highly recommended!"</p>
+                        <p class="card-text fst-italic text-muted">“The quality and purity of the products are excellent. You can truly feel the care and traditional values behind their work. Highly recommended!”</p>
                         <h6 class="fw-bold mt-3">- Priya Sharma</h6>
                     </div>
                 </div>
@@ -318,7 +319,7 @@ a, button{
                         <div class="text-warning mb-3">
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
                         </div>
-                        <p class="card-text fst-italic text-muted">"I use their vermicompost for my home garden, and the results are fantastic. My plants are greener than ever."</p>
+                        <p class="card-text fst-italic text-muted">“Their commitment to natural and sustainable practices really shows in the results. Everything feels fresh, reliable, and well-prepared.”</p>
                         <h6 class="fw-bold mt-3">- Rahul Verma</h6>
                     </div>
                 </div>
@@ -329,7 +330,7 @@ a, button{
                         <div class="text-warning mb-3">
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                         </div>
-                        <p class="card-text fst-italic text-muted">"Fresh milk delivery is punctual, and the packaging is very hygienic. Great service team!"</p>
+                        <p class="card-text fst-italic text-muted">“The service is professional and timely, and the packaging is clean and hygienic. A very trustworthy and customer-focused team.”</p>
                         <h6 class="fw-bold mt-3">- Anita Desai</h6>
                     </div>
                 </div>
@@ -349,12 +350,12 @@ a, button{
                     <div class="accordion-item border-0 shadow-sm mb-3 rounded overflow-hidden">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                                Do you deliver daily?
+                                Do you plan to introduce more products in the future?
                             </button>
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted">
-                                Yes, for milk and fresh produce subscribers, we offer daily morning delivery between 6 AM and 8 AM.
+                                Yes, we are continuously working on expanding our product range while maintaining the same focus on quality and sustainability.
                             </div>
                         </div>
                     </div>
@@ -373,12 +374,12 @@ a, button{
                     <div class="accordion-item border-0 shadow-sm mb-3 rounded overflow-hidden">
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                                What is your return policy?
+                                How do you ensure the quality and purity of your products?
                             </button>
                         </h2>
                         <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted">
-                                If you receive a damaged product or are unsatisfied with the quality, please contact us within 24 hours for a replacement or refund.
+                                We follow careful sourcing, hygienic preparation, and quality checks to maintain high standards and customer satisfaction.
                             </div>
                         </div>
                     </div>
@@ -390,7 +391,7 @@ a, button{
                         </h2>
                         <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted">
-                                Yes, we accept bulk orders for Ghee, Honey, and Gift Hampers. Please contact us 1 week in advance.
+                                Yes, we accept bulk orders for our products and Gift Hampers. Please contact us 1 week in advance.
                             </div>
                         </div>
                     </div>
@@ -418,7 +419,7 @@ a, button{
         <p class="lead mb-4">Get in touch with us for orders, farm visits, or general inquiries.</p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
             <button class="btn btn-light text-success fw-bold px-4 rounded-pill" onclick="homeWhatsApp()"><i class="bi bi-whatsapp me-2"></i> Chat on WhatsApp</button>
-            <button class="btn btn-outline-light fw-bold px-4 rounded-pill"><i class="bi bi-telephone-fill me-2"></i> Call Us</button>
+            
             <a href="{% url 'contact' %}" class="btn btn-outline-light fw-bold px-4 rounded-pill">
                 <i class="bi bi-shop me-2"></i>Contact Page
             </a>

@@ -8,13 +8,13 @@
 <style>
     
     :root {
-        --agro-green: #2d6a4f;
+        --agro-primary: #2d6a4f;
         --agro-light: #f8fbf9;
         --agro-earth: #6c584c;
     }
 
     .about-hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x600/2d6a4f/ffffff?text=Our+Beautiful+Farm');
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("");
         background-size: cover;
         background-position: center;
         padding: 100px 0;
@@ -68,7 +68,7 @@
 <section class="about-hero text-center">
     <div class="container">
         <h1 class="display-4 fw-bold">About Us</h1>
-        <p class="lead">Nurturing Nature, Delivering Purity Since 1998</p>
+        <p class="lead">Nurturing Nature, Delivering Purity </p>
        
     </div>
 </section>
@@ -77,7 +77,7 @@
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <img src="https://placehold.co/800x600/2d6a4f/ffffff?text=Our+Heritage" class="img-fluid rounded-4 shadow-lg" alt="Our Story">
+                <img src="{% static 'images/about-us.jpg' %}" class="img-fluid rounded-4 shadow-lg" alt="Our Story">
             </div>
             <div class="col-lg-6">
                 <span class="badge badge-agro mb-3">Our Roots</span>
@@ -148,7 +148,7 @@
                     <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
                     <div>
                         <h5 class="fw-bold">Farm-to-Table</h5>
-                        <p class="small text-muted">Direct delivery within hours of harvest or processing.</p>
+                        <p class="small text-muted">Direct delivery of harvest or processing products at home.</p>
                     </div>
                 </div>
             </div>
@@ -184,7 +184,7 @@
                     <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
                     <div>
                         <h5 class="fw-bold">Doorstep Delivery</h5>
-                        <p class="small text-muted">Reliable daily delivery network for fresh milk and ghee.</p>
+                        <p class="small text-muted">Reliable and quick delivery network covering the entire region.</p>
                     </div>
                 </div>
             </div>
@@ -192,7 +192,7 @@
     </div>
 </section>
 
-<section class="py-5 bg-light">
+{% comment %} <section class="py-5 bg-light">
     <div class="container text-center">
         <h2 class="section-title">What We Produce</h2>
         <div class="row g-4 mt-2">
@@ -231,9 +231,9 @@
         </div>
         <a href="{%url 'products'%}" class="btn btn-success rounded-pill px-5 mt-5 fw-bold py-2">View All Products</a>
     </div>
-</section>
+</section> {% endcomment %}
 
-<section class="py-5">
+{% comment %} <section class="py-5">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6 order-lg-2">
@@ -250,9 +250,9 @@
             </div>
         </div>
     </div>
-</section>
+</section> {% endcomment %}
 
-<section class="py-5 bg-agro text-white text-center" style="background-color: var(--agro-green);">
+<section class="py-5 bg-agro text-white text-center" style="background-color: var(--agro-primary);">
     <div class="container py-4">
         <h2 class="fw-bold mb-3">Experience the Purity Today</h2>
         <p class="lead mb-4">Have questions about our farming methods or want to schedule a visit?</p>

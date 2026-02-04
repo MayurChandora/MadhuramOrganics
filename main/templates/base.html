@@ -25,7 +25,34 @@ a, button{
   pointer-events: auto !important;
 }
 
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+    }
 
+    * {
+        box-sizing: border-box;
+    }
+
+    .section {
+    width: 100%;
+    }
+
+    img {
+    max-width: 100%;
+    height: auto;
+    }
+
+        /* Remove gap below navbar */
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* First section after navbar */
+    main > section:first-child {
+        padding-top: 0 !important;
+    }
 
         /* Custom Green Theme Overrides */
         .bg-agro {
@@ -126,10 +153,7 @@ a, button{
                         <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{%url 'contact' %}">Contact</a>
                     </li>
                 </ul>
-                <div class="d-flex gap-2">
-                    <a href="/admin/" class="btn btn-outline-light btn-sm px-3 rounded-pill">Login</a>
-                    {% comment %} <a href="#" class="btn btn-agro btn-sm px-3 rounded-pill">Sign Up</a> {% endcomment %}
-                </div>
+                
             </div>
         </div>
     </nav>
