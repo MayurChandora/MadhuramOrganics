@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Terms of Service | Madhuram Organics{% endblock %}
+
+{% block content %}
+<header class="hero-wrapper text-center"
+    style="background-image: url('{% static 'images/contact_banner.png' %}'); height: 30vh; min-height: 200px;">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content-inner">
+        <h1 class="display-4 fw-bold mb-3 text-white">Terms of Service</h1>
+    </div>
+</header>
+
+<section class="section-padding bg-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="mb-5">
+                    <h2 class="fw-bold mb-4 text-agro-primary">Standard Terms & Conditions</h2>
+                    <p class="lead text-muted">These terms govern your use of our website and services. By accessing
+                        Madhuram Organics, you agree to follow these guidelines.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="fw-bold">1. Product Purity</h4>
+                    <p class="text-muted">We strive to provide 100% organic and natural products. Product images are for
+                        illustrative purposes, and natural variations in color, texture, and taste may occur due to
+                        seasonal changes and traditional processing methods.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="fw-bold">2. Ordering & Payments</h4>
+                    <p class="text-muted">Currently, all orders are processed via WhatsApp for personalized service.
+                        Prices and availability are subject to change without notice. We will confirm the final price
+                        including delivery charges before finalization.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="fw-bold">3. Returns & Refunds</h4>
+                    <p class="text-muted">Due to the perishable nature of our products (milk, ghee, etc.), returns are
+                        only accepted if products are damaged or incorrect upon delivery. Please check your order
+                        immediately on arrival.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h4 class="fw-bold">4. Limitation of Liability</h4>
+                    <p class="text-muted">Madhuram Organics shall not be liable for any indirect, incidental, or
+                        consequential damages resulting from the use or inability to use our products or website.</p>
+                </div>
+
+                <div class="mb-5">
+                    <h4 class="fw-bold">5. Governing Law</h4>
+                    <p class="text-muted">These terms are governed by the laws of India. Any disputes will be subject to
+                        the exclusive jurisdiction of the courts in our registered location.</p>
+                </div>
+
+                <p class="small text-muted">Last updated: February 12, 2026</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -29,6 +29,8 @@ urlpatterns = [
     path('products/', views.products, name='products'),
     path('gallery/', views.gallery, name='gallery'),
     path('demo/', views.demo, name='demo'),
+    path('privacy/', views.privacy, name='privacy'),
+    path('terms/', views.terms, name='terms'),
 ]
 
 

@@ -22,7 +22,12 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
 </head>
+
 
 <body>
 
@@ -106,7 +111,7 @@
 
                 <div class="col-lg-4 col-md-12">
                     <h5 class="fw-bold mb-4">Contact Us</h5>
-                    <ul class="list-unstyled text-white opacity-75 small">
+                    <ul class="list-unstyled text-white small">
                         <li class="mb-3 d-flex align-items-start">
                             <i class="bi bi-geo-alt-fill text-white me-3 fs-5"></i>
                             <span>MadhuramOrganics Farm, Green Valley, India - 560001</span>
@@ -131,9 +136,11 @@
                         reserved.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <a href="#" class="text-white opacity-50 small text-decoration-none me-4 hover-opacity-100">Privacy
+                    <a href="{% url 'privacy' %}"
+                        class="text-white opacity-50 small text-decoration-none me-4 hover-opacity-100">Privacy
                         Policy</a>
-                    <a href="#" class="text-white opacity-50 small text-decoration-none hover-opacity-100">Terms of
+                    <a href="{% url 'terms' %}"
+                        class="text-white opacity-50 small text-decoration-none hover-opacity-100">Terms of
                         Service</a>
                 </div>
             </div>

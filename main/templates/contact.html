@@ -5,166 +5,153 @@
 
 {% block content %}
 <style>
-    .contact-hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
-        url("{% static 'images/contact_banner.png' %}");
-        background-size: cover;
-        background-position: center;
-        padding: 150px 0 100px;
-        color: white;
-        margin-top: -76px;
-    }
-
     .contact-card {
-        border: none;
+        background: white;
+        padding: 2.5rem;
         border-radius: var(--border-radius-md);
-        transition: var(--transition);
-        background-color: var(--agro-light-gray);
+        box-shadow: var(--shadow-sm);
         height: 100%;
+        text-align: center;
+        border: 1px solid var(--agro-light-gray);
+        transition: var(--transition);
     }
 
     .contact-card:hover {
         transform: translateY(-5px);
-        background-color: white;
         box-shadow: var(--shadow-md);
+        border-color: transparent;
     }
 
-    .icon-circle {
-        width: 60px;
-        height: 60px;
-        background-color: var(--agro-secondary);
+    .contact-icon {
+        font-size: 2.5rem;
         color: var(--agro-primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        margin-bottom: 0;
-        font-size: 1.5rem;
-        transition: var(--transition);
+        margin-bottom: 1.5rem;
+        display: inline-block;
     }
 
-    .contact-card:hover .icon-circle {
-        background-color: var(--agro-primary);
-        color: white;
-    }
-
-    .form-control {
-        padding: 1rem;
-        border-radius: var(--border-radius-sm);
-        border: 1px solid #dee2e6;
-        background-color: var(--agro-light-gray);
-        transition: var(--transition);
+    .form-control,
+    .form-select {
+        border-radius: 8px;
+        padding: 0.8rem 1rem;
+        border: 1px solid var(--agro-light-gray);
+        background-color: var(--agro-sand);
     }
 
     .form-control:focus {
         border-color: var(--agro-primary);
+        box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
         background-color: white;
-        box-shadow: 0 0 0 4px var(--agro-secondary);
+    }
+
+    .map-container {
+        border-radius: var(--border-radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
     }
 </style>
 
-<section class="contact-hero text-center">
-    <div class="container">
-        <h1 class="display-3 fw-bold mb-3">Get In Touch</h1>
-        <p class="lead fs-4 opacity-90">We'd love to hear from you</p>
+<header class="hero-wrapper text-center"
+    style="background-image: url('{% static 'images/contact_banner.png' %}'); height: 50vh; min-height: 350px;">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content-inner">
+        <h1 class="display-3 fw-bold mb-3 text-white">Get in Touch</h1>
+        <p class="lead fs-4 text-white opacity-90">We'd love to hear from you</p>
     </div>
-</section>
+</header>
 
 <section class="section-padding">
     <div class="container">
-        <div class="row g-5 align-items-stretch">
 
-            <div class="col-lg-5">
-                <div class="h-100 d-flex flex-column justify-content-between">
-                    <div class="mb-5">
-                        <span class="badge badge-soft-green mb-3">Reach Out</span>
-                        <h3 class="display-6 fw-bold mb-4 text-dark">Contact Information</h3>
-                        <p class="text-muted lead">Have a specific inquiry or want to visit our farm? Reach out through
-                            any of these channels or fill out the form.</p>
-                    </div>
-
-                    <div class="row g-4">
-                        <div class="col-sm-6 col-lg-12">
-                            <div class="card p-4 contact-card border-0">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon-circle me-4"><i class="bi bi-telephone-fill"></i></div>
-                                    <div>
-                                        <h6 class="fw-bold mb-1 text-dark">Call Us</h6>
-                                        <p class="small text-muted mb-0">+91 90240 08767</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-12">
-                            <div class="card p-4 contact-card border-0">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon-circle me-4"><i class="bi bi-whatsapp"></i></div>
-                                    <div>
-                                        <h6 class="fw-bold mb-1 text-dark">WhatsApp</h6>
-                                        <p class="small text-muted mb-0">+91 90240 08767</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-12">
-                            <div class="card p-4 contact-card border-0">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon-circle me-4"><i class="bi bi-envelope-fill"></i></div>
-                                    <div>
-                                        <h6 class="fw-bold mb-1 text-dark">Email</h6>
-                                        <p class="small text-muted mb-0">info@MadhuramOrganics.com</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-12">
-                            <div class="card p-4 contact-card border-0">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon-circle me-4"><i class="bi bi-geo-alt-fill"></i></div>
-                                    <div>
-                                        <h6 class="fw-bold mb-1 text-dark">Location</h6>
-                                        <p class="small text-muted mb-0">MadhuramOrganics Farm, Green Valley</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Contact Info Cards -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <i class="bi bi-geo-alt-fill contact-icon"></i>
+                    <h5 class="fw-bold mb-3">Visit Farm</h5>
+                    <p class="text-muted mb-0">MadhuramOrganics Farm,<br>Green Valley, India - 560001</p>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <i class="bi bi-telephone-fill contact-icon"></i>
+                    <h5 class="fw-bold mb-3">Call Us</h5>
+                    <p class="text-muted mb-0">+91 90240 08767<br>Mon-Sat: 9am - 6pm</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <i class="bi bi-envelope-fill contact-icon"></i>
+                    <h5 class="fw-bold mb-3">Email Us</h5>
+                    <p class="text-muted mb-0">info@MadhuramOrganics.com<br>support@MadhuramOrganics.com</p>
+                </div>
+            </div>
+        </div>
 
+        <!-- Contact Form & Map -->
+        <div class="row g-5 align-items-start mt-4">
             <div class="col-lg-7">
-                <div class="card shadow-lg border-0 p-4 p-md-5 rounded-4 h-100 bg-white">
-                    <h3 class="fw-bold mb-4 text-agro-primary">Send a Message</h3>
-                    <form method="POST" onsubmit="sendToWhatsApp(event)">
-                        {% csrf_token %}
+                <div class="bg-white p-5 rounded-4 shadow-sm border border-light">
+                    <h3 class="fw-bold mb-4 text-agro-primary">Send Message</h3>
+                    <form onsubmit="submitForm(event)">
                         <div class="row g-3">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold small text-uppercase text-muted">Full Name</label>
-                                <input type="text" id="name" class="form-control" name="name"
-                                    placeholder="Enter your name" required>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Your Name</label>
+                                <input type="text" class="form-control" id="name" required placeholder="John Doe">
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold small text-uppercase text-muted">Contact Number</label>
-                                <input type="tel" id="phone" name="phone" class="form-control"
-                                    placeholder="10-digit mobile number" required pattern="[0-9]{10}" maxlength="10">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Your Email</label>
+                                <input type="email" class="form-control" id="email" required
+                                    placeholder="john@example.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="+91 98765 43210">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Subject</label>
+                                <select class="form-select" id="subject">
+                                    <option>General Inquiry</option>
+                                    <option>Bulk Order</option>
+                                    <option>Farm Visit</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold small">Message</label>
+                                <textarea class="form-control" id="message" rows="5" required
+                                    placeholder="How can we help you?"></textarea>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-agro w-100 py-3">Send Message</button>
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <label class="form-label fw-bold small text-uppercase text-muted">Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="5"
-                                placeholder="How can we help you?" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-agro w-100 py-3 fw-bold shadow-sm">
-                            <i class="bi bi-send-fill me-2"></i>Send Message via WhatsApp
-                        </button>
-                        <p class="text-center text-muted mt-4 small">
-                            <i class="bi bi-clock me-1"></i> We usually respond within 24 hours.
-                        </p>
                     </form>
                 </div>
             </div>
-
+            <div class="col-lg-5">
+                <div class="map-container h-100" style="min-height: 400px;">
+                    <!-- Placeholder Map -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15555.5!2d77.59!3d12.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU4JzEyLjAiTiA3N8KwMzUnMjQuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                        width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen=""
+                        loading="lazy"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const subject = document.getElementById('subject').value;
+        const msg = document.getElementById('message').value;
+
+        const whatsappMsg = `Hi, I am ${name}.%0A*Email:* ${email}%0A*Phone:* ${phone}%0A*Subject:* ${subject}%0A*Message:* ${msg}`;
+        window.open(`https://wa.me/919024008767?text=${whatsappMsg}`, '_blank');
+    }
+</script>
 {% endblock %}

@@ -11,18 +11,19 @@
     --agro-primary: #2d6a4f;
     /* Deep Forest Green */
     --agro-primary-dark: #1b4332;
-    /* Darker Green for Hover/Text */
-    --agro-secondary: #d8f3dc;
-    /* Pale Mint/Sage */
-    --agro-accent: #d97706;
-    /* Warm Harvest Gold/Orange */
-    --agro-earth: #6c584c;
-    /* Rich Soil Brown */
-    --agro-sand: #fdfcf8;
-    /* Warm Off-White Background */
-    --agro-light-gray: #f8f9fa;
-    --text-dark: #1f2937;
-    --text-muted: #6b7280;
+    /* Darker Green for Hover */
+    --agro-secondary: #e8f5e9;
+    /* Softest Mint */
+    --agro-accent: #e9c46a;
+    /* Soft Harvest Yellow */
+    --agro-earth: #8d6e63;
+    /* Warm Earth Brown */
+    --agro-sand: #fbf7f0;
+    /* Premium Warm Beige Background */
+    --agro-light-gray: #f4f1ea;
+    /* Light Beige/Grey for sections */
+    --text-dark: #2c3e50;
+    --text-muted: #607d8b;
     --white: #ffffff;
 
     /* Typography */
@@ -30,12 +31,13 @@
     --font-body: 'Inter', sans-serif;
 
     /* Spacing & Layout */
+    --navbar-height: 80px;
     --border-radius-sm: 8px;
     --border-radius-md: 16px;
     --border-radius-lg: 24px;
-    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 4px 6px -1px rgba(45, 106, 79, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(45, 106, 79, 0.1);
+    --shadow-lg: 0 20px 25px -5px rgba(45, 106, 79, 0.15);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -49,9 +51,11 @@ html {
 body {
     font-family: var(--font-body);
     color: var(--text-dark);
-    line-height: 1.6;
+    line-height: 1.7;
     background-color: var(--agro-sand);
     overflow-x: hidden;
+    padding-top: var(--navbar-height);
+    /* Fixes navbar overlap */
 }
 
 h1,
@@ -65,9 +69,9 @@ h6,
 .display-3,
 .display-4 {
     font-family: var(--font-heading);
-    color: var(--agro-primary-dark);
+    color: var(--agro-primary);
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
 }
 
 a {
@@ -85,10 +89,11 @@ a {
     background-color: var(--agro-primary);
     color: var(--white);
     border: 2px solid var(--agro-primary);
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 2rem;
     border-radius: 50px;
     font-weight: 600;
     transition: var(--transition);
+    letter-spacing: 0.5px;
 }
 
 .btn-agro:hover {
@@ -103,7 +108,7 @@ a {
     background-color: transparent;
     color: var(--agro-primary);
     border: 2px solid var(--agro-primary);
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 2rem;
     border-radius: 50px;
     font-weight: 600;
     transition: var(--transition);
@@ -133,28 +138,41 @@ a {
 /* Badges */
 .badge-soft-green {
     background-color: var(--agro-secondary);
-    color: var(--agro-primary-dark);
-    padding: 0.5em 1em;
+    color: var(--agro-primary);
+    padding: 0.6em 1.2em;
     border-radius: 50px;
     font-weight: 600;
     font-size: 0.85rem;
+    letter-spacing: 0.5px;
 }
 
 /* =========================================
    4. Header & Navigation
    ========================================= */
-.navbar-agro {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: var(--shadow-sm);
+/* .navbar-agro {
+    background-color: rgba(251,247,240,0.6);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     padding: 1rem 0;
     transition: var(--transition);
+    height: var(--navbar-height);
+} */
+.navbar-agro {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem 0;
+    transition: var(--transition);
+    height: var(--navbar-height);
 }
+
 
 .navbar-agro .navbar-brand {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     color: var(--agro-primary);
 }
 
@@ -163,6 +181,7 @@ a {
     font-weight: 500;
     padding: 0.5rem 1rem;
     position: relative;
+    font-size: 0.95rem;
 }
 
 .navbar-agro .nav-link:hover,
@@ -170,68 +189,59 @@ a {
     color: var(--agro-primary);
 }
 
-.navbar-agro .nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 50%;
-    background-color: var(--agro-primary);
-    transition: var(--transition);
-    transform: translateX(-50%);
-}
-
-.navbar-agro .nav-link:hover::after,
-.navbar-agro .nav-link.active::after {
-    width: 80%;
-}
-
-/* Floating WhatsApp */
-.whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background-color: #25d366;
+/* =========================================
+   5. Hero Sections
+   ========================================= */
+/* Specific styling for hero sections to look premium but strictly handle overlap */
+.hero-wrapper {
+    margin-top: calc(-1 * var(--navbar-height));
+    /* Pull behind navbar for transparent look */
+    padding-top: calc(var(--navbar-height) + 4rem);
+    /* Push content down safely */
+    padding-bottom: 5rem;
+    background-size: cover;
+    background-position: center;
+    position: relative;
     color: white;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: var(--shadow-md);
-    z-index: 1000;
+    min-height: 80vh;
+    /* Minimum height for spaciousness */
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
 }
 
-.whatsapp-float:hover {
-    background-color: #128c7e;
-    transform: scale(1.1) rotate(15deg);
-    color: white;
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+    /* Darker overlay for better text contrast */
+    z-index: 1;
+}
+
+.hero-content-inner {
+    position: relative;
+    z-index: 2;
 }
 
 /* =========================================
-   5. Footer
+   6. Footer
    ========================================= */
 .footer-agro {
-    background-color: var(--agro-earth);
+    background-color: var(--agro-primary);
     color: rgba(255, 255, 255, 0.9);
     padding-top: 5rem;
     padding-bottom: 2rem;
 }
 
 .footer-agro h5 {
-    color: var(--white);
+    color: var(--agro-accent);
     margin-bottom: 1.5rem;
 }
 
 .footer-link {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     display: block;
     margin-bottom: 0.75rem;
@@ -246,7 +256,7 @@ a {
 .social-icon {
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -257,12 +267,13 @@ a {
 }
 
 .social-icon:hover {
-    background: var(--agro-primary);
+    background: var(--agro-accent);
+    color: var(--agro-primary);
     transform: translateY(-3px);
 }
 
 /* =========================================
-   6. Utilities
+   7. Utilities & Animations
    ========================================= */
 .text-agro-primary {
     color: var(--agro-primary) !important;
@@ -272,13 +283,15 @@ a {
     background-color: var(--agro-secondary) !important;
 }
 
-.section-padding {
-    padding: 5rem 0;
+.bg-agro-sand {
+    background-color: var(--agro-sand) !important;
 }
 
-/* =========================================
-   7. Animations
-   ========================================= */
+.section-padding {
+    padding: 6rem 0;
+    /* More spacious */
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -307,6 +320,129 @@ a {
     animation: fadeInUp 0.8s ease-out forwards;
 }
 
-.animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: scale(1.1);
+}
+
+@media (max-width: 576px) {
+    .whatsapp-float {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* =========================================
+   8. Specific Refinements
+   ========================================= */
+
+/* Hero Badge for high contrast */
+.hero-badge {
+    background-color: rgba(45, 106, 79, 0.85);
+    /* Semi-transparent primary green */
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    padding: 0.6em 1.2em;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Masonry Layout */
+.masonry-grid {
+    column-count: 3;
+    column-gap: 1.5rem;
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 992px) {
+    .masonry-grid {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 576px) {
+    .masonry-grid {
+        column-count: 1;
+    }
+}
+
+/* Premium Gradient Button for About Page */
+.btn-premium-gradient {
+    background: linear-gradient(135deg, #fbf7f0 0%, #e8f5e9 100%);
+    color: var(--agro-primary) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: var(--transition);
+}
+
+.btn-premium-gradient:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    /* Stronger shadow */
+    background: linear-gradient(135deg, #ffffff 0%, #f4f1ea 100%);
+    /* Lighter gradient on hover */
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* High Contrast Text Utility */
+.text-contrast-high {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    /* Subtle drop shadow */
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Reusable Shop Button Style (Extracted from Navbar) */
+.shop-style-btn {
+    background-color: var(--agro-primary);
+    color: var(--white);
+    border: 2px solid var(--agro-primary);
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.shop-style-btn:hover {
+    background-color: var(--agro-primary-dark);
+    border-color: var(--agro-primary-dark);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }

@@ -21,3 +21,9 @@ def gallery(request):
 
 def demo(request):
     return render(request, "demo.html")
+
+def privacy(request):
+    return render(request, "privacy.html")
+
+def terms(request):
+    return render(request, "terms.html")
