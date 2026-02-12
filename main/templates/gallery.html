@@ -5,53 +5,51 @@
 
 {% block content %}
 <style>
-    :root {
-        --agro-green: #2d6a4f;
-        --agro-light: #f8fbf9;
-    }
-
-    /*.gallery-hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x600/2d6a4f/ffffff?text=Our+Farm+Life');
+    .gallery-hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+        url("{% static 'images/gallery_banner.png' %}");
         background-size: cover;
         background-position: center;
-        padding: 80px 0;
+        background-attachment: fixed;
+        padding: 120px 0 80px;
         color: white;
-    }*/
+        margin-top: -76px;
+    }
 
     .filter-btn {
         border-radius: 50px;
-        padding: 8px 25px;
+        padding: 0.5rem 1.5rem;
         font-weight: 600;
-        border: 2px solid var(--agro-green);
-        color: var(--agro-green);
+        border: 2px solid var(--agro-primary);
+        color: var(--agro-primary);
         background: transparent;
-        transition: all 0.3s ease;
+        transition: var(--transition);
+        margin: 0.25rem;
     }
 
-    .filter-btn.active, .filter-btn:hover {
-        background-color: var(--agro-green);
+    .filter-btn.active,
+    .filter-btn:hover {
+        background-color: var(--agro-primary);
         color: white;
-    }
-
-    .gallery-item {
-        transition: all 0.4s ease;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
     }
 
     .gallery-card {
         border: none;
-        border-radius: 12px;
+        border-radius: var(--border-radius-md);
         overflow: hidden;
         position: relative;
         cursor: pointer;
-       
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        height: 250px;
+        box-shadow: var(--shadow-sm);
     }
 
     .gallery-card img {
-        transition: transform 0.5s ease;
+        transition: transform 0.6s ease;
         width: 100%;
-        height: 250px;
-         object-fit: cover;    /* crops image, no stretching */
+        height: 100%;
+        object-fit: cover;
         display: block;
     }
 
@@ -61,15 +59,13 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(45, 106, 79, 0.7);
+        background: rgba(45, 106, 79, 0.4);
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
         opacity: 0;
-        transition: opacity 0.3s ease;
-        padding: 10px;
-        text-align: center;
+        transition: var(--transition);
+        backdrop-filter: blur(2px);
     }
 
     .gallery-card:hover img {
@@ -83,88 +79,99 @@
     .overlay-icon {
         color: white;
         font-size: 2.5rem;
-    }
-
-    .gallery-title {
-        color: white;
-        font-weight: 600;
-        margin-top: 10px;
-        font-size: 1rem;
-    }
-
-    .modal-content {
-        background-color: transparent;
-        border: none;
-    }
-
-    .modal-body img {
-        border-radius: 15px;
-        border: 5px solid white;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        padding: 10px;
+        backdrop-filter: blur(5px);
     }
 </style>
 
-<section class="gallery-hero text-left">
+<section class="gallery-hero text-center">
     <div class="container">
-        <h1 class="display-4 fw-bold">Our Gallery</h1>
-        <p class="lead">Farm, cows, products and agriculture work snapshots</p>
-
+        <h1 class="display-3 fw-bold mb-3">Our Gallery</h1>
+        <p class="lead fs-4 opacity-90">Glimpses of Farm Life & Organic Harvest</p>
     </div>
 </section>
 
-<section class="py-5">
+<section class="section-padding">
     <div class="container">
-        <div class="d-flex flex-wrap left gap-3 mb-5">
-            <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
-            <button class="filter-btn" onclick="filterGallery('farm', this)">Farm</button>
-            <button class="filter-btn" onclick="filterGallery('cow-products', this)">Cow Products</button>
-            <button class="filter-btn" onclick="filterGallery('agriculture', this)">Agriculture</button>
+        <div class="text-center mb-5">
+            <div class="d-inline-flex flex-wrap justify-content-center">
+                <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+                <button class="filter-btn" onclick="filterGallery('farm', this)">Farm Life</button>
+                <button class="filter-btn" onclick="filterGallery('cow-products', this)">Cow Products</button>
+                <button class="filter-btn" onclick="filterGallery('agriculture', this)">Agriculture</button>
+            </div>
         </div>
 
         <div class="row g-4" id="galleryGrid">
             {% for g in gallery_images %}
-            {% comment %} <div class="col-lg-3 col-md-4 col-sm-6 gallery-item" data-category="{{ g.category }}"> {% endcomment %}
-            <div class="col-6 col-md-4 col-lg-3 gallery-item" data-category="{{ g.category }}">
-
+            <div class="col-md-4 col-sm-6 gallery-item animate__animated animate__fadeIn"
+                data-category="{{ g.category }}">
                 <div class="gallery-card" onclick="openLightbox('{{ g.image.url }}')">
                     <img src="{{ g.image.url }}" alt="{{ g.title|default:'Gallery Image' }}">
                     <div class="gallery-overlay">
-                        <i class="bi bi-plus-lg overlay-icon"></i>
-                        {% if g.title %}
-                        <div class="gallery-title">{{ g.title }}</div>
-                        {% endif %}
+                        <i class="bi bi-zoom-in overlay-icon"></i>
                     </div>
                 </div>
             </div>
             {% empty %}
             <div class="col-12">
-                <div class="alert alert-info text-center rounded-pill border-0 shadow-sm">
-                    No gallery images available right now.
+                <div class="text-center py-5">
+                    <div class="display-1 text-muted opacity-25 mb-3"><i class="bi bi-images"></i></div>
+                    <h4 class="text-muted">No gallery images uploaded yet.</h4>
                 </div>
             </div>
             {% endfor %}
+            <!-- Placeholder Images for Demo if Empty (Remove in Prod) -->
+            {% if not gallery_images %}
+            <div class="col-md-4 col-sm-6 gallery-item" data-category="farm">
+                <div class="gallery-card" onclick="openLightbox('{% static 'images/brown-cow-eatting-grass_.jpg' %}')">
+                    <img src="{% static 'images/brown-cow-eatting-grass_.jpg' %}" alt="Cow Eating">
+                    <div class="gallery-overlay"><i class="bi bi-zoom-in overlay-icon"></i></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item" data-category="agriculture">
+                <div class="gallery-card"
+                    onclick="openLightbox('https://placehold.co/800x600/2d6a4f/ffffff?text=Green+Field')">
+                    <img src="https://placehold.co/800x600/2d6a4f/ffffff?text=Green+Field" alt="Field">
+                    <div class="gallery-overlay"><i class="bi bi-zoom-in overlay-icon"></i></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 gallery-item" data-category="cow-products">
+                <div class="gallery-card"
+                    onclick="openLightbox('https://placehold.co/800x600/e9ecef/2d6a4f?text=Fresh+Milk')">
+                    <img src="https://placehold.co/800x600/e9ecef/2d6a4f?text=Fresh+Milk" alt="Milk">
+                    <div class="gallery-overlay"><i class="bi bi-zoom-in overlay-icon"></i></div>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </section>
 
-<section class="py-5 bg-agro text-white text-center" style="background-color: var(--agro-green);">
+<section class="section-padding bg-agro text-white text-center" style="background-color: var(--agro-primary);">
     <div class="container py-4">
         <h2 class="fw-bold mb-3">Want to know more?</h2>
-        <p class="lead mb-4">Chat with us directly for farm visits or bulk orders.</p>
-        
-        <button class="btn btn-light btn-lg px-5 rounded-pill fw-bold text-success shadow" onclick="homeWhatsApp()">
+        <p class="lead mb-4 opacity-90">Chat with us directly for farm visits or bulk orders.</p>
+        <button class="btn btn-light btn-lg px-5 rounded-pill fw-bold text-agro-primary shadow-sm"
+            onclick="homeWhatsApp()">
             <i class="bi bi-whatsapp me-2"></i> Chat on WhatsApp
         </button>
     </div>
 </section>
 
+<!-- Lightbox Modal -->
 <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
+        <div class="modal-content bg-transparent border-0">
             <div class="modal-header border-0">
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body p-0 text-center">
-                <img src="" id="lightboxImg" class="img-fluid" alt="Enlarged Image">
+                <img src="" id="lightboxImg" class="img-fluid rounded-3 shadow-lg border border-white border-4"
+                    alt="Enlarged Image">
             </div>
         </div>
     </div>
@@ -179,9 +186,8 @@
         // Filter Items
         const items = document.querySelectorAll('.gallery-item');
         items.forEach(item => {
-            
             let itemCategory = item.getAttribute('data-category');
-            
+
             // Mapping UI buttons to model category strings
             let targetCategory = category;
             if (category === 'cow-products') targetCategory = 'cow';
@@ -202,8 +208,5 @@
         const myModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
         myModal.show();
     }
-
-    
 </script>
 {% endblock%}
-

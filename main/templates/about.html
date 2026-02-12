@@ -1,97 +1,99 @@
-
 {% extends "base.html" %}
 {% load static %}
 {% block title %}About Us | MadhuramOrganics{% endblock %}
 
 {% block content %}
-
 <style>
-    
-    :root {
-        --agro-primary: #2d6a4f;
-        --agro-light: #f8fbf9;
-        --agro-earth: #6c584c;
-    }
-
     .about-hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("");
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+        url("{% static 'images/about_banner.png' %}");
         background-size: cover;
         background-position: center;
-        padding: 100px 0;
+        background-attachment: fixed;
+        padding: 150px 0 100px;
         color: white;
+        margin-top: -76px;
     }
 
-    .breadcrumb-item + .breadcrumb-item::before {
-        color: rgba(255,255,255,0.7);
+    .stat-card {
+        background: white;
+        padding: 2rem;
+        border-radius: var(--border-radius-md);
+        box-shadow: var(--shadow-sm);
+        text-align: center;
+        transition: var(--transition);
+        height: 100%;
     }
 
-    .section-title {
-        color: var(--agro-green);
-        font-weight: 700;
-        position: relative;
-        margin-bottom: 30px;
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
     }
 
-    .card-hover {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: none;
-        border-radius: 15px;
+    .value-card {
+        background: white;
+        padding: 2.5rem;
+        border-radius: var(--border-radius-lg);
+        height: 100%;
+        transition: var(--transition);
+        border: 1px solid var(--agro-secondary);
     }
 
-    .card-hover:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    .value-card:hover {
+        background-color: var(--agro-secondary);
+        border-color: transparent;
+        transform: translateY(-5px);
     }
 
-    .icon-box {
-        width: 60px;
-        height: 60px;
-        background-color: var(--agro-light);
-        color: var(--agro-green);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        margin-bottom: 20px;
-        font-size: 24px;
-    }
-
-    .badge-agro {
-        background-color: #d8f3dc;
-        color: #2d6a4f;
-        font-weight: 600;
-        padding: 8px 16px;
-        border-radius: 50px;
+    .value-icon {
+        font-size: 2.5rem;
+        color: var(--agro-primary);
+        margin-bottom: 1.5rem;
     }
 </style>
 
+<!-- Hero Section -->
 <section class="about-hero text-center">
     <div class="container">
-        <h1 class="display-4 fw-bold">About Us</h1>
-        <p class="lead">Nurturing Nature, Delivering Purity </p>
-       
+        <h1 class="display-3 fw-bold mb-3">About Us</h1>
+        <p class="lead fs-4 opacity-90">Nurturing Nature, Delivering Purity</p>
     </div>
 </section>
 
-<section class="py-5">
+<!-- Our Story Section -->
+<section class="section-padding">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <img src="{% static 'images/about-us.jpg' %}" class="img-fluid rounded-4 shadow-lg" alt="Our Story">
+                <div class="position-relative">
+                    <img src="{% static 'images/about-us.jpg' %}"
+                        class="img-fluid rounded-4 shadow-lg position-relative" style="z-index: 2;" alt="Our Story">
+                    <div class="position-absolute bg-agro-secondary rounded-4 w-100 h-100 top-0 start-0 translate-middle-y mt-4 ms-4"
+                        style="z-index: 1;"></div>
+                </div>
             </div>
             <div class="col-lg-6">
-                <span class="badge badge-agro mb-3">Our Roots</span>
-                <h2 class="section-title">The Story of MadhuramOrganics</h2>
-                <p class="text-muted">Founded in the heart of the countryside, MadhuramOrganics started as a small family farm with just three cows and a commitment to chemical-free agriculture. We believed that the health of our community depended on the purity of what they consume.</p>
-                <p class="text-muted">Today, we have grown into a leading provider of organic cow products and sustainable farming solutions, yet our core values remain the same: Respect for nature, ethical treatment of cattle, and uncompromised quality for our customers.</p>
-                <div class="row mt-4">
+                <span class="badge badge-soft-green mb-3">Our Roots</span>
+                <h2 class="display-5 fw-bold mb-4">The Story of Madhuram</h2>
+                <p class="text-muted lead lh-lg mb-4">Founded in the heart of the countryside, MadhuramOrganics started
+                    as a small family farm with just three indigenous cows and a commitment to chemical-free
+                    agriculture.</p>
+                <p class="text-muted mb-5">Today, we have grown into a leading provider of organic cow products and
+                    sustainable farming solutions, yet our core values remain the same: Respect for nature, ethical
+                    treatment of cattle, and uncompromised quality for our customers.</p>
+
+                <div class="row g-4">
                     <div class="col-6">
-                        <h4 class="fw-bold text-success">25+</h4>
-                        <p class="small text-muted">Years of Experience</p>
+                        <div class="stat-card">
+                            <h3 class="display-4 fw-bold text-agro-primary mb-0">25+</h3>
+                            <p class="text-muted small text-uppercase fw-bold ls-1 mt-2">Years of Service</p>
+                        </div>
                     </div>
                     <div class="col-6">
-                        <h4 class="fw-bold text-success">5000+</h4>
-                        <p class="small text-muted">Happy Families Served</p>
+                        <div class="stat-card">
+                            <h3 class="display-4 fw-bold text-agro-primary mb-0">5k+</h3>
+                            <p class="text-muted small text-uppercase fw-bold ls-1 mt-2">Happy Families</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,92 +101,113 @@
     </div>
 </section>
 
-<section class="py-5 bg-light">
+<!-- Mission Vision Values -->
+<section class="section-padding bg-agro-light-gray">
     <div class="container text-center">
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card h-100 p-4 card-hover shadow-sm">
-                    <div class="icon-box mx-auto"><i class="bi bi-eye"></i></div>
-                    <h4 class="fw-bold">Our Vision</h4>
-                    <p class="text-muted">To be the global benchmark for organic agriculture, making chemical-free living accessible to every household.</p>
+                <div class="value-card shadow-sm">
+                    <i class="bi bi-eye value-icon"></i>
+                    <h4 class="fw-bold mb-3">Our Vision</h4>
+                    <p class="text-muted">To be the global benchmark for organic agriculture, making chemical-free
+                        living accessible to every household.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100 p-4 card-hover shadow-sm">
-                    <div class="icon-box mx-auto"><i class="bi bi-bullseye"></i></div>
-                    <h4 class="fw-bold">Our Mission</h4>
-                    <p class="text-muted">To produce and deliver the highest quality farm-fresh products while empowering local farmers and preserving the environment.</p>
+                <div class="value-card shadow-sm">
+                    <i class="bi bi-bullseye value-icon"></i>
+                    <h4 class="fw-bold mb-3">Our Mission</h4>
+                    <p class="text-muted">To produce and deliver the highest quality farm-fresh products while
+                        empowering local farmers and preserving the environment.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card h-100 p-4 card-hover shadow-sm">
-                    <div class="icon-box mx-auto"><i class="bi bi-heart"></i></div>
-                    <h4 class="fw-bold">Our Values</h4>
-                    <p class="text-muted">Purity, Ethical Farming, Transparency, and a deep-rooted love for our Mother Earth and her creatures.</p>
+                <div class="value-card shadow-sm">
+                    <i class="bi bi-heart value-icon"></i>
+                    <h4 class="fw-bold mb-3">Our Values</h4>
+                    <p class="text-muted">Purity, Ethical Farming, Transparency, and a deep-rooted love for our Mother
+                        Earth and her creatures.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="py-5">
+<!-- Why Choose Us -->
+<section class="section-padding">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="section-title">Why Choose Our Farm?</h2>
-            <p class="text-muted">We maintain the highest standards in every step of our process.</p>
+            <h5 class="text-agro-primary text-uppercase fw-bold ls-2 mb-2">Quality Assurance</h5>
+            <h2 class="display-5 fw-bold text-dark">Why Choose Our Farm?</h2>
+            <p class="text-muted lead mt-3">We maintain the highest standards in every step of our process.</p>
         </div>
         <div class="row g-4">
             <div class="col-md-4 col-sm-6">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                <div class="d-flex align-items-start p-3">
+                    <div class="bg-agro-secondary text-agro-primary rounded-circle p-3 me-3">
+                        <i class="bi bi-check-lg fs-4"></i>
+                    </div>
                     <div>
-                        <h5 class="fw-bold">100% Organic</h5>
-                        <p class="small text-muted">Zero chemicals or synthetic fertilizers used in our processes.</p>
+                        <h5 class="fw-bold mb-2">100% Organic</h5>
+                        <p class="text-muted small mb-0">Zero chemicals or synthetic fertilizers used in our processes.
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                <div class="d-flex align-items-start p-3">
+                    <div class="bg-agro-secondary text-agro-primary rounded-circle p-3 me-3">
+                        <i class="bi bi-basket fs-4"></i>
+                    </div>
                     <div>
-                        <h5 class="fw-bold">Farm-to-Table</h5>
-                        <p class="small text-muted">Direct delivery of harvest or processing products at home.</p>
+                        <h5 class="fw-bold mb-2">Farm-to-Table</h5>
+                        <p class="text-muted small mb-0">Direct delivery of fresh harvest from our farm to your kitchen.
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                <div class="d-flex align-items-start p-3">
+                    <div class="bg-agro-secondary text-agro-primary rounded-circle p-3 me-3">
+                        <i class="bi bi-heart-pulse fs-4"></i>
+                    </div>
                     <div>
-                        <h5 class="fw-bold">Ethical Treatment</h5>
-                        <p class="small text-muted">Cows are pasture-raised and treated with love and care.</p>
+                        <h5 class="fw-bold mb-2">Ethical Treatment</h5>
+                        <p class="text-muted small mb-0">Cows are pasture-raised and treated with love and care.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                <div class="d-flex align-items-start p-3">
+                    <div class="bg-agro-secondary text-agro-primary rounded-circle p-3 me-3">
+                        <i class="bi bi-shield-check fs-4"></i>
+                    </div>
                     <div>
-                        <h5 class="fw-bold">Pure & Untouched</h5>
-                        <p class="small text-muted">Hygienic processing without any human touch or additives.</p>
+                        <h5 class="fw-bold mb-2">Pure & Untouched</h5>
+                        <p class="text-muted small mb-0">Hygienic processing without any human touch or additives.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                <div class="d-flex align-items-start p-3">
+                    <div class="bg-agro-secondary text-agro-primary rounded-circle p-3 me-3">
+                        <i class="bi bi-search fs-4"></i>
+                    </div>
                     <div>
-                        <h5 class="fw-bold">Trusted Source</h5>
-                        <p class="small text-muted">Full transparency with regular farm visits for our patrons.</p>
+                        <h5 class="fw-bold mb-2">Trusted Source</h5>
+                        <p class="text-muted small mb-0">Full transparency with regular farm visits for our patrons.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
-                <div class="d-flex align-items-start">
-                    <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                <div class="d-flex align-items-start p-3">
+                    <div class="bg-agro-secondary text-agro-primary rounded-circle p-3 me-3">
+                        <i class="bi bi-truck fs-4"></i>
+                    </div>
                     <div>
-                        <h5 class="fw-bold">Doorstep Delivery</h5>
-                        <p class="small text-muted">Reliable and quick delivery network covering the entire region.</p>
+                        <h5 class="fw-bold mb-2">Doorstep Delivery</h5>
+                        <p class="text-muted small mb-0">Reliable and quick delivery network covering the entire region.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -192,79 +215,19 @@
     </div>
 </section>
 
-{% comment %} <section class="py-5 bg-light">
-    <div class="container text-center">
-        <h2 class="section-title">What We Produce</h2>
-        <div class="row g-4 mt-2">
-            <div class="col-lg-3 col-md-6">
-                <div class="card card-hover h-100 overflow-hidden">
-                    <img src="https://placehold.co/400x300/e9ecef/2d6a4f?text=Desi+Ghee" class="card-img-top" alt="Ghee">
-                    <div class="card-body">
-                        <h5 class="fw-bold">A2 Desi Ghee</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card card-hover h-100 overflow-hidden">
-                    <img src="https://placehold.co/400x300/e9ecef/2d6a4f?text=Fresh+Milk" class="card-img-top" alt="Milk">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Fresh Raw Milk</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card card-hover h-100 overflow-hidden">
-                    <img src="https://placehold.co/400x300/e9ecef/2d6a4f?text=Dung+Cake" class="card-img-top" alt="Dung Cake">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Cow Dung Cakes</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="card card-hover h-100 overflow-hidden">
-                    <img src="https://placehold.co/400x300/e9ecef/2d6a4f?text=Manure" class="card-img-top" alt="Manure">
-                    <div class="card-body">
-                        <h5 class="fw-bold">Organic Manure</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a href="{%url 'products'%}" class="btn btn-success rounded-pill px-5 mt-5 fw-bold py-2">View All Products</a>
-    </div>
-</section> {% endcomment %}
-
-{% comment %} <section class="py-5">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6 order-lg-2">
-                <img src="https://placehold.co/800x600/2d6a4f/ffffff?text=Quality+Testing" class="img-fluid rounded-4" alt="Quality Promise">
-            </div>
-            <div class="col-lg-6 order-lg-1">
-                <h2 class="section-title">The Quality Promise</h2>
-                <p class="text-muted">We understand that when it comes to food, there is no compromise. That is why our farm follows a rigorous quality protocol.</p>
-                <ul class="list-unstyled">
-                    <li class="mb-3"><i class="bi bi-shield-fill-check text-success me-2"></i> <strong>Lab Tested:</strong> Every batch is checked for purity.</li>
-                    <li class="mb-3"><i class="bi bi-shield-fill-check text-success me-2"></i> <strong>Cold Chain:</strong> Temperature-controlled storage for freshness.</li>
-                    <li class="mb-3"><i class="bi bi-shield-fill-check text-success me-2"></i> <strong>Natural Fodder:</strong> Our cows eat only natural grass and oil-cakes.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section> {% endcomment %}
-
-<section class="py-5 bg-agro text-white text-center" style="background-color: var(--agro-primary);">
+<!-- Call to Action -->
+<section class="section-padding bg-agro text-white text-center" style="background-color: var(--agro-primary);">
     <div class="container py-4">
-        <h2 class="fw-bold mb-3">Experience the Purity Today</h2>
-        <p class="lead mb-4">Have questions about our farming methods or want to schedule a visit?</p>
+        <h2 class="display-6 fw-bold mb-4">Experience the Purity Today</h2>
+        <p class="lead mb-4 opacity-75">Have questions about our farming methods or want to schedule a visit?</p>
         <div class="d-flex justify-content-center gap-3 flex-wrap">
-            <a onclick="homeWhatsApp()" class="btn btn-light btn-lg px-4 rounded-pill fw-bold text-success">
+            <button onclick="homeWhatsApp()" class="btn btn-light btn-lg px-4 rounded-pill fw-bold text-agro-primary">
                 <i class="bi bi-whatsapp me-2"></i>Chat on WhatsApp
-            </a>
+            </button>
             <a href="{%url 'contact'%}" class="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold">
                 Contact Us
             </a>
         </div>
     </div>
 </section>
-
 {% endblock %}
