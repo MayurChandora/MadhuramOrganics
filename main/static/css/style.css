@@ -169,12 +169,34 @@ a {
 }
 
 
+
+/* When mobile menu opens */
+.navbar-collapse.show {
+    background-color: var(--agro-sand);
+    backdrop-filter: none;
+}
 .navbar-agro .navbar-brand {
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 1.6rem;
     color: var(--agro-primary);
 }
+@media (max-width: 991px){
+
+.navbar .btn-agro{
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0.5rem 0 !important;
+    color: inherit !important;
+    font-weight: 500;
+    text-align: left;
+    display: block;
+    width: 100%;
+}
+
+}
+
 
 .navbar-agro .nav-link {
     color: var(--text-dark);
