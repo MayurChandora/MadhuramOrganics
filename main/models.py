@@ -37,8 +37,8 @@ class ProductImage(models.Model):
 class GalleryImage(models.Model):
     CATEGORY_CHOICES = [
         ("farm", "Farm"),
-        ("cow", "Cow Products"),
-        ("agri", "Agriculture"),
+        ("cow-products", "Cow Products"),
+        ("agriculture", "Agriculture"),
     ]
 
     title = models.CharField(max_length=200, blank=True)
